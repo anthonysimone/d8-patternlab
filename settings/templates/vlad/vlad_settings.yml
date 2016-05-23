@@ -1,0 +1,24 @@
+  webserver_hostname: '@boxname.vlad'
+  webserver_hostname_alias: 'www.{{ webserver_hostname }}'
+
+# Components
+  pimpmylog_install: true
+#  varnish_install: true
+
+# Vagrantfile configuration
+  boxipaddress: "@boxipaddress"
+  boxname: "@boxname"
+  host_synced_folder: "../docroot"
+  aux_synced_folder: "../vlad_aux"
+#  http_port: 8080
+#  varnish_http_port: 80
+
+# MySQL Settings
+  mysql_port: 3306
+  mysql_root_password: @db_root_pass
+  dbname: @db_name
+  dbuser: @db_user
+  dbpass: @db_pass
+
+# SSH Settings
+  use_host_id: true

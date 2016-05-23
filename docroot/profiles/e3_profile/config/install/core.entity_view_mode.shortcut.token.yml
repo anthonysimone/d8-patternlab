@@ -1,0 +1,10 @@
+uuid: d8794930-76dc-4353-adab-53f1e7b1d90a
+langcode: en
+status: true
+dependencies:
+  module:
+    - shortcut
+id: shortcut.token
+label: Token
+targetEntityType: shortcut
+cache: true
