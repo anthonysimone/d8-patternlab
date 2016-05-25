@@ -74,6 +74,7 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
  * example.org, with all subdomains included.
  */
 $settings['file_public_path'] = 'sites/default/files';
+$settings['install_profile'] = 'standard';
 
 // If $_ENV['AH_SITE_ENVIRONMENT'], load Acquia settings.
 if(isset($_ENV['AH_SITE_ENVIRONMENT'])) {
@@ -96,15 +97,3 @@ elseif (file_exists(__DIR__ . '/settings.vlad.php')) {
 if(file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';
 }
-$settings['install_profile'] = 'standard';
-
-$databases['default']['default'] = array (
-  'database' => 'd8-patternlab',
-  'username' => 'root',
-  'password' => 'root',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
-);
