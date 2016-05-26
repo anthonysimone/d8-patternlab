@@ -1,0 +1,82 @@
+////
+/// General functions for theme.
+/// @group Functions
+////
+
+/// Return a map from the specified key. Optionally specify a sub key.
+/// Works similarly to map-get but with support for sub keys.
+/// @param {map} $map
+/// @param {string} $key - The map key to retrieve.
+/// @param {string} $sub-key [null] - A sub-key of $key
+/// @returns {*|null} The value of the supplied key
+@function key($map, $key, $sub-key: null) {
+  @if map-has-key($map, $key) {
+    $val: map-get($map, $key);
+
+    @if $sub-key and map-has-key($val, $sub-key) {
+      $val: map-get($val, $sub-key);
+    }
+
+    @return $val;
+  }
+
+  @warn "Unknown '#{$key}' in '#{$map}'.";
+  @return null;
+}
+
+/// Retrieve a breakpoint listed in $breakpoints map.
+/// @see $breakpoints
+/// @param {string} $bp - A key in the $breakpoints map.
+/// @returns {string} pixel value of key in map.
+@function bp($bp) {
+  @return key($breakpoints, $bp);
+}
+
+/// Retrieve the z-index from $z-layers.
+/// @see $z-layers
+@function z($key, $sub-key: null) {
+  @return key($z-layers, $key, $sub-key);
+}
+
+/// Retrieve a config item from $tabs-config
+/// @see $tabs-config
+@function tabs($key, $sub-key: null) {
+  @return key($tabs-config, $key, $sub-key);
+}
+
+
+
+
+/// Generates a selector with every text input type. You can also filter the list to only output a subset of those selectors.
+/// Fixes a bug in the foundation function
+///
+/// @param {List|Keyword} $types [()] - A list of text input types to use. Leave blank to use all of them.
+@function text-input-types($types: ()) {
+  $return: ();
+
+  $all-types:
+          text
+          password
+          date
+          datetime
+          datetime-local
+          month
+          week
+          email
+          number
+          search
+          tel
+          time
+          url
+          color;
+
+  @if not has-value($types) {
+    $types: $all-types;
+  }
+
+  @each $type in $types {
+    $return: append($return, '[type="#{$type}"]', comma);
+  }
+
+  @return $return;
+}

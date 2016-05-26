@@ -1,0 +1,20 @@
+{
+  "name": "themekit",
+  "version": "1.0.0",
+  "homepage": "https://github.com/elevatedthird/themekit",
+  "authors": [
+    "Elevated Third"
+  ],
+  "description": "Starter drupal theme kit.",
+  "license": "ISC",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation-sites": "^6.2.2"
+  }
+}

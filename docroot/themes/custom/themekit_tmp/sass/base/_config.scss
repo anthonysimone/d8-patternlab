@@ -1,0 +1,110 @@
+////
+/// General theme configuration.
+/// @group Configuration
+////
+
+
+//*********************************************
+// Font faces, stacks and sizes.
+//*********************************************
+
+/// The font size that all elements will inherit.
+/// This is NOT the same as the font size that is set on the html element.
+$base-font-size:   16px;
+
+/// This line-height determines the basic unit of vertical rhythm.
+/// Line heights should remain unitless.
+/// @link https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#Prefer_unitless_numbers_for_line-height_values
+$base-line-height: 1.5;
+
+$h1-font-size: 2    * $base-font-size;
+$h2-font-size: 1.5  * $base-font-size;
+$h3-font-size: 1.17 * $base-font-size;
+$h4-font-size: 1    * $base-font-size;
+$h5-font-size: 0.83 * $base-font-size;
+$h6-font-size: 0.75 * $base-font-size;
+
+$times-new-roman: "Times New Roman", Times, Georgia, "DejaVu Serif", serif;
+$times:           Times, "Times New Roman", Georgia, "DejaVu Serif", serif;
+$georgia:         Georgia, "Times New Roman", "DejaVu Serif", serif;
+
+$verdana:         Verdana, Tahoma, "DejaVu Sans", sans-serif;
+$tahoma:          Tahoma, Verdana, "DejaVu Sans", sans-serif;
+$helvetica:       Helvetica, Arial, "Nimbus Sans L", sans-serif;
+$arial:           Arial, Helvetica, "Nimbus Sans L", sans-serif;
+
+// For an explanation of why "sans-serif" is at the end of this list, see
+// http://meyerweb.com/eric/thoughts/2010/02/12/fixed-monospace-sizing/
+$courier:         "Courier New", "DejaVu Sans Mono", monospace, sans-serif;
+
+// Now create some variables for the font stacks we want to use on this site.
+
+/// The font family set on the html element.
+$base-font-family: $verdana;
+
+/// The font family set on the body element.
+$font-body:        $verdana;
+
+/// Monospace font
+$font-monospace:   $courier;
+
+
+//*********************************************
+// Drupal messages
+//*********************************************
+
+/// Drupal error color
+$errorbg: #d3113a;
+
+/// Drupal warning color
+$warningbg: #d28712;
+
+/// Drupal status ok color
+$statusokbg: #2ca20d;
+//$message-icons: sprite-map("messages/*.png");
+
+
+//*********************************************
+// Theme Config
+//*********************************************
+
+/// Configuration for Drupal Admin tabs.
+$tabs-config: (
+  wrap: (
+    background: #fafafa,
+    border: #efefef
+  ),
+  link: (
+    color: #251923,
+    background: #efefef,
+    hover-color: #ffffff,
+    hover-background: #251923
+  ),
+  alt-colors: #b6c4c5 #575642 #4c4650 #251923
+);
+
+///// Sitewide breakpoints
+//$breakpoints: (
+//  sm: 640,
+//  md: 860,
+//  lg: 960
+//);
+
+/// z-index organization.
+/// See links below for more information.
+///
+/// @link https://css-tricks.com/handling-z-index/
+/// @link http://www.sitepoint.com/using-sass-maps/
+$z-layers: (
+  bottomless-pit: -9999,
+  default: 0,
+  debug: 1000,
+
+  // example nested z-index.
+  example: (
+    default: 100,
+    image: -2
+  )
+);
+
+

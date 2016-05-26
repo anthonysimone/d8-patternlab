@@ -1,0 +1,66 @@
+////
+/// General theme mixins
+/// @group Mixins
+////
+
+
+/// Required for message styles
+@mixin square($dimensions) {
+  height: $dimensions;
+  width: $dimensions;
+}
+
+// Mixins from Zen base
+
+/// The word "Unpublished" displayed underneath unpublished nodes and comments.
+@mixin unpublished-div {
+  height: 0;
+  overflow: visible;
+  color: #d8d8d8;
+  font-size: 75px;
+  line-height: 1;
+  font-family: Impact, "Arial Narrow", Helvetica, sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+/// A very simple clear mixin.
+@mixin clear() {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+    @content;
+  }
+}
+
+
+/// Create common breakpoints and optionally set a fallback for non-supporting browsers.
+/// @param {string} $size - A key in the $breakpoints variable or any valid css unit.
+/// @param {boolean} $default [false] - Determines if this breakpoint should be used for a no-query fallback.
+/// @param {string} $direction ['min-width'] - Determines the direction of the breakpoint. Can be min-width or max-width.
+@mixin bp($size, $default: false, $direction: 'min-width') {
+  $bp: bp($size);
+
+  @if $bp {
+    $size: $bp;
+  }
+
+  @if ($direction == 'max-width') {
+    $size: $size - 1;
+  }
+
+  $remSize: ($size / 16px) * 1rem;
+
+  @media (#{$direction}: #{$remSize}) {
+    @content;
+  }
+
+  @if ($default) {
+    .no-mediaqueries & {
+      @content;
+    }
+  }
+}

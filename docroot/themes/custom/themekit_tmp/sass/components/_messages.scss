@@ -1,0 +1,79 @@
+// Custom styles for Drupal's notification messages.
+
+.messages {
+  color: #fff;
+  margin: 6px 0;
+  padding: 10px 10px 10px 45px; /* LTR */
+  position: relative;
+  text-align: left;
+
+  &:before {
+    @include square(28px);
+    content: '';
+    left: 10px;
+    position: absolute;
+    top: 5px;
+  }
+}
+
+.status,
+.ok {
+  background-color: $statusokbg;
+
+  a {
+    color: lighten($statusokbg, 50%);
+  }
+
+  &:before {
+    //background: sprite($message-icons, 'status');
+  }
+}
+
+.warning {
+  background-color: $warningbg;
+
+  a {
+    color: lighten($warningbg, 50%);
+  }
+
+  &:before {
+    //background: sprite($message-icons, 'warning');
+  }
+}
+
+.error {
+  background-color: $errorbg;
+
+  a {
+    color: lighten($errorbg, 50%);
+  }
+
+  &:before {
+    //background: sprite($message-icons, 'error');
+  }
+}
+
+.messages ul {
+  list-style: none;
+  margin: 0; /* LTR */
+  padding: 0;
+}
+.messages ul li {
+  border-bottom: 1px solid #fff;
+  list-style-image: none;
+  margin-bottom: 4px;
+  padding-bottom: 5px;
+
+  &:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+ // Fix some styles in Krumo
+.krumo-element,
+.krumo-footnote,
+.krumo-call,
+.krumo-preview {
+  color: #231f20;
+}

@@ -1,0 +1,56 @@
+////
+/// Styling for Drupal admin tabs.
+/// @see $tabs-config
+/// @group Drupal
+////
+ul.primary {
+  font-size: 16px;
+  margin: 0 auto;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: tabs(wrap, background);
+  border-bottom: 1px solid tabs(wrap, border);
+
+  li {
+    list-style: none;
+    float: left;
+    margin-bottom: 0;
+
+    a {
+      padding: 8px 18px;
+      background: tabs(link, background);
+      border-top: 5px solid #ffd204;
+      display: block;
+      color: tabs(link, color);
+      font-weight: normal;
+      text-decoration: none;
+
+      &:hover,
+      &:active {
+        background: tabs(link, hover-background);
+        color: tabs(link, hover-color);
+      }
+    }
+  }
+
+  $alt-colors: tabs(alt-colors);
+
+  @for $i from 1 through length($alt-colors) {
+
+    li:nth-child(#{length($alt-colors)}n + #{$i}) {
+
+      a {
+        border-top: 5px solid nth($alt-colors, $i);
+
+        &:hover,
+        &:active {
+          background: nth($alt-colors, $i);
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}
+

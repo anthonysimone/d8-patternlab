@@ -1,0 +1,57 @@
+// Animation declarations
+
+
+// Simple rotation
+@keyframes rotate {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+
+////
+/// Replace Drupal Ajax Throbber
+///
+/// The following snippet replaces the default ajax throbber with a custom svg element and rotation.
+/// The fallback replaces the Drupal gif with a less ugly custom gif. Only the throbber element has
+/// been modified here, so it will still have the default behavior of appearing inline and default
+/// size, etc. Size can be altered easily below.
+///
+/// Color of svg spinner can easily be changed in the loader.svg file, or completely replace
+/// with an alternative.
+///
+/// Relies on modernizr cssanimations test.
+/// @group Animations
+////
+.cssanimations .ajax-progress-throbber {
+  // Drupal height and width defaults, alter these to change the size, child element is width/height 100%
+  width: 19px;
+  height: 19px;
+  .throbber {
+    background: url(../../images/svg/loader.svg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0;
+    height: 0;
+    width: 100%;
+    padding-bottom: 100%;
+    animation: rotate 700ms linear infinite normal;
+  }
+}
+.no-cssanimations .ajax-progress-throbber {
+  // Drupal default height, width
+  height: 19px;
+  width: 19px;
+  .throbber {
+    // Drupal margin, height, width defaults, alter to change the size
+    margin: 2px;
+    height: 15px;
+    width: 15px;
+    background: url(../../images/gif-loader.gif);
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}

@@ -1,0 +1,6 @@
+#{text-input-types()},
+textarea {
+  @include form-element;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}

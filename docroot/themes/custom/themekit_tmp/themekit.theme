@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * Use this file to override Drupal's default HTML output
+ */
+
+function themekit_preprocess_page(&$variables) {
+
+}
+
+function themekit_preprocess_node(&$variables) {
+
+}
