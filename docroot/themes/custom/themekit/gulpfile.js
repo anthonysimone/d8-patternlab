@@ -15,6 +15,7 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var sassdoc = require('sassdoc');
 var babel = require('gulp-babel');
+var exec = require('child_process').exec;
 
 /************************
  * CONFIGURATION
@@ -23,7 +24,23 @@ var babel = require('gulp-babel');
 var autoReload = true;
 
 var paths = {
-  bowerDir: './bower_components'
+  bowerDir: './bower_components',
+  drupal: {
+    css: {
+      src: './css/src',
+      dist: './css/dist'
+    },
+    js: {
+      src: './js/src',
+      dist: './js/dist',
+      lib: './js/lib'
+    }
+  },
+  patternLab: {
+    rootDir: "./pattern-lab",
+    publicDir: "./pattern-lab/public",
+    publishedDir: "./pattern-lab/published"
+  }
 };
 
 var includePaths = [
@@ -81,14 +98,14 @@ gulp.task('styles', function() {
     .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 8'))
     .pipe(sourcemaps.write())
     .pipe(concat('style.css'))
-    .pipe(gulp.dest('./css/src/'))
+    .pipe(gulp.dest(paths.drupal.css.src))
     .pipe(livereload())
     .pipe(minifyCss({
       compatibility: 'ie8',
       // turn off minifyCss sourcemaps so they don't conflict with gulp-sourcemaps and includePaths
       sourceMap: false
     }))
-    .pipe(gulp.dest('./css/dist/'))
+    .pipe(gulp.dest(paths.drupal.css.dist))
     .pipe(livereload());
 });
 
@@ -103,13 +120,13 @@ gulp.task('scripts', function() {
     .pipe(babel())
     .pipe(concat('theme.js'))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./js/dist/'))
+    .pipe(gulp.dest(paths.drupal.js.dist))
     .pipe(livereload())
     .pipe(uglify())
     .pipe(rename({
       extname: '.min.js'
     }))
-    .pipe(gulp.dest('./js/dist/'))
+    .pipe(gulp.dest(paths.drupal.js.dist))
     .pipe(livereload())
 });
 
@@ -122,3 +139,18 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['styles', 'scripts']);
+
+// generate patternlab
+gulp.task('pl:generate', function(cb) {
+  exec('php ' + paths.patternLab.rootDir + '/core/console --generate', function(err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+// copy current version of `public` dir to `published` dir
+gulp.task('pl:publish', function() {
+  gulp.src(paths.patternLab.publicDir + '/**/*')
+    .pipe(gulp.dest(paths.patternLab.publishedDir));
+});
