@@ -1,0 +1,4 @@
+This is the directory pattern lab dist will be published to. We are ignoring it because most files change
+on each generation because of cache busting and are instead committing a `published` directory so we can
+commit the patternlab to the repo when we choose. This directory needs to exist in the repo for you to compile pattern
+lab for the first time.
